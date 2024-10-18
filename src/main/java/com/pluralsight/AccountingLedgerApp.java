@@ -1,6 +1,7 @@
 package com.pluralsight;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class AccountingLedgerApp {
@@ -136,6 +137,84 @@ public class AccountingLedgerApp {
     }
     public static void displayReports(){
         Scanner scanner = new Scanner(System.in);
+        boolean run = true;
+        while (run){
+            System.out.println("Reports Menu");
+            System.out.println("1) Month to Date");
+            System.out.println("2) Previous Month");
+            System.out.println("3) Year to Date");
+            System.out.println("4) Previous Year");
+            System.out.println("5) Vendor Name");
+            System.out.println("B) Back to Home");
+            System.out.println("Select an Option");
+            String choice = scanner.nextLine();
+
+            if (choice.equals("1")){
+                displayMonthToDate();
+            } else if (choice.equals("2")) {
+                displayPreviousMonth();
+            } else if (choice.equals("3")) {
+                displayYearToDate();
+            } else if (choice.equals("4")) {
+                displayPreviousYear();
+            } else if (choice.equals("5")) {
+                searchVendor();
+            } else if (choice.equals("B")) {
+                run = false;
+            }
+        }
     }
+    public static void displayMonthToDate(){
+        System.out.println("Month to Date Transactions");
+        try (BufferedReader reader = new BufferedReader(new FileReader("transactions.csv"))){
+            String line;
+            String currentMonth = "2024-10";
+            while ((line = reader.readLine()) !=null){
+                String[] parts = line.split("\\|");
+                String date = parts[0];
+                if (date.startsWith(currentMonth)){
+                    System.out.println(line);
+                }
+            }
+        } catch (IOException e){
+            System.out.println("Error, Try Again" + e.getMessage());
+        }
+    }
+    public static void displayPreviousMonth(){
+        System.out.println("Previous Months");
+        LocalDate currentDate = LocalDate.now();
+        LocalDate previousMonthDate = currentDate.minusMonths(1);
+        String previousMonth = previousMonthDate.toString().substring(0, 7);
+        try (BufferedReader reader = new BufferedReader(new FileReader("transactions.csv"))){
+            String line;
+            while ((line = reader.readLine()) !=null){
+                String[] parts = line.split("\\|");
+                String date = parts[0];
+                if (date.startsWith(previousMonth)){
+                    System.out.println(line);
+                }
+            }
+        } catch (IOException e){
+            System.out.println("Error, Try Again" + e.getMessage());
+        }
+    }
+    public static void displayYearToDate(){
+        System.out.println("Year to Date");
+        LocalDate currentDate = LocalDate.now();
+        String currentYear = String.valueOf(currentDate.getYear());
+        try (BufferedReader reader = new BufferedReader(new FileReader("transactions.csv"))){
+            String line;
+            while ((line = reader.readLine()) !=null){
+                String[] parts = line.split("\\|");
+                String date = parts[0];
+                if (date.startsWith(currentYear)){
+                    System.out.println(line);
+                }
+            }
+        } catch (IOException e){
+            System.out.println("Error, Try Again" + e.getMessage());
+        }
+    }
+    public 
 }
 

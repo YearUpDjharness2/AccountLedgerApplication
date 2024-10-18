@@ -1,75 +1,58 @@
 package com.pluralsight;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.Scanner;
 
 public class AccountingLedgerApp {
-
-    public static void main(String[] args){
+    public static void main (String[] args){
+        displayHomeScreenMenu();
+    }
+    public static void displayHomeScreenMenu(){
         Scanner scanner = new Scanner(System.in);
-        LedgerClass ledger = new LedgerClass();
-        boolean exit = false;
-
-        while (!exit){
-            showHomeScreen();
-            String option = scanner.nextLine().toUpperCase();
-
-            switch (option){
-                case "D":
-                    System.out.println("Adding a deposit.");
-                    break;
-                case "P":
-                    System.out.println("Making a payment.");
-                case "L":
-                    ledger.displayAll();
-                    break;
-                case "R":
-                    System.out.println("Reports");
-                    break;
-                case "X":
-                    exit = true;
-                    System.out.println("Exiting");
-                    break;
-                default:
-                    System.out.println("Invalid");
-            }
-        }
-        scanner.close();
-    }
-    public static void showHomeScreen(){
-        System.out.println("Ledger Home Screen");
-        System.out.println("D) Add Deposit");
-        System.out.println("P) Make a Payment");
-        System.out.println("L) View Ledger");
-        System.out.println("X) Exit");
-        System.out.println("Select an option: ");
-    }
-    public static void showReports(Scanner scanner){
-        boolean back = false;
-
-        while (!back){
-            System.out.println("Reports Menu");
-            System.out.println("1) Months to Date");
-            System.out.println("2) Past Months");
-            System.out.println("3) Year to Date");
-            System.out.println("4) Past Years");
-            System.out.println("5) Search Vendor");
-            System.out.println("0) Home Screen");
+        boolean run = true;
+        while (run){
+            System.out.println("=====Welcome to Your Account Ledger");
             System.out.println("Select an Option");
+            System.out.println("D) Make a Deposit");
+            System.out.println("P) Make a Payment");
+            System.out.println("L) View Ledger");
+            System.out.println("E) Exit");
 
-            String option = scanner.nextLine();
-            switch (option){
-                case "1":
-                    System.out.println("Month to Date");
-                case "2":
-                    System.out.println("Previous Month");
-                case "3":
-                    System.out.println("Year to Date");
-                case "4"
+            String choice = scanner.nextLine().toUpperCase();
+            if (choice.equals("D")){
+                addDeposit(scanner);
+            } else if (choice.equals("E")) {
+                run = false;
+                System.out.println("Exiting");
+            } else if (choice.equals("P")) {
+                makePayment(scanner);
+            } else if (choice.equals("L")) {
+                displayLedgerMenu();
+            } else {
+                System.out.println("Invalid Response");
 
             }
-
         }
     }
+    public static void addDeposit (Scanner scanner){
+        System.out.println("Add a New Deposit");
+        System.out.println("Enter Date of Deposit (Ex. YYYY/MM/DD)");
+        String date = scanner.nextLine();
+        System.out.println("Time of Deposit (Ex. HH:MM:SS)");
+        String time = scanner.nextLine();
+        System.out.println("Deposit Description?");
+        String description = scanner.nextLine();
+        System.out.println("Name of Vendor?");
+        String vendor = scanner.nextLine();
+        System.out.println("Deposit Amount?");
+        String amount = scanner.nextLine();
+        String transaction = date + "|" + time + "|" + description + "|" + vendor + "|" + amount + "\n";
 
-            }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("transactions.csv", true))){
+            
+        }
 
+    }
+
+}

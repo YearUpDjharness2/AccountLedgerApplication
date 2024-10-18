@@ -60,7 +60,7 @@ public class AccountingLedgerApp {
 
     public static void makePayment(Scanner scanner) {
         System.out.println("Make a Payment (Debit)");
-        System.out.println("Payment Date (YYYY/MM/DD");
+        System.out.println("Payment Date (YYYY/MM/DD)");
         String date = scanner.nextLine();
         System.out.println("Time of Payment? (Ex. HH:MM:SS)");
         String time = scanner.nextLine();
@@ -88,6 +88,7 @@ public class AccountingLedgerApp {
             System.out.println("A) All Deposits");
             System.out.println("P) All Payments");
             System.out.println("R) Reports");
+            System.out.println("B) Back");
             System.out.println("Select an Option: ");
             String choice = scanner.nextLine();
             if (choice.equals("A")) {
@@ -96,6 +97,8 @@ public class AccountingLedgerApp {
                 displayPayments();
             } else if (choice.equals("R")) {
                 displayReports();
+            } else if (choice.equals("B")) {
+                run = false;
             }
         }
         String choice = scanner.nextLine().toUpperCase();

@@ -85,10 +85,10 @@ public class AccountingLedgerApp {
         boolean run = true;
         while (run) {
             System.out.println("Your Ledger Account");
-            System.out.println("Select an Option: ");
             System.out.println("A) All Deposits");
             System.out.println("P) All Payments");
             System.out.println("R) Reports");
+            System.out.println("Select an Option: ");
             String choice = scanner.nextLine();
             if (choice.equals("A")) {
                 displayAllLedgerInfo();
@@ -104,7 +104,7 @@ public class AccountingLedgerApp {
     public static void displayAllLedgerInfo() {
         System.out.println("All Ledger Info");
 
-        try (BufferedReader reader = new BufferedReader(new FileReader("transaction.csv"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("transactions.csv"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 System.out.println(line);
@@ -115,7 +115,7 @@ public class AccountingLedgerApp {
     }
 
     public static void displayPayments() {
-        try (BufferedReader reader = new BufferedReader(new FileReader("transaction.csv"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("transactions.csv"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split("\\|");
@@ -215,6 +215,48 @@ public class AccountingLedgerApp {
             System.out.println("Error, Try Again" + e.getMessage());
         }
     }
-    public 
+    public static void displayPreviousYear(){
+        System.out.println("Previous Year");
+        LocalDate currentDate = LocalDate.now();
+        int previousYear = currentDate.getYear() -1;
+        try (BufferedReader reader = new BufferedReader(new FileReader("transactions.csv"))){
+            String line;
+            while ((line = reader.readLine()) !=null){
+                String[] parts = line.split("\\|");
+                String date = parts[0];
+                if (date.startsWith(String.valueOf(previousYear))){
+                    System.out.println(line);
+                }
+            }
+        } catch (IOException e){
+            System.out.println("Error, Try Again" + e.getMessage());
+        }
+    }
+    public static void searchVendor(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Vendor Name: ");
+        String vendorName = scanner.nextLine().trim();
+        try (BufferedReader reader = new BufferedReader(new FileReader("transactions.csv"))){
+            String line;
+            boolean is = false;
+            while ((line = reader.readLine()) !=null){
+                String[] parts = line.split("\\|");
+                if (parts.length >=4){
+                    String vendor = parts[3];
+                    if (vendor.equalsIgnoreCase(vendorName)){
+                        System.out.println(line);
+                        is = true;
+                    }
+                }
+            }
+            if (!is){
+                System.out.println("No Transactions Found For" + vendorName);
+            }
+        } catch (IOException e){
+            System.out.println("Error, Try Again" + e.getMessage());
+        }
+
+
+    }
 }
 

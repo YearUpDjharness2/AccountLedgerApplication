@@ -18,6 +18,7 @@ public class AccountingLedgerApp {
             System.out.println("P) Make a Payment");
             System.out.println("L) View Ledger");
             System.out.println("E) Exit");
+            System.out.println("========================================");
             System.out.println("Select an Option: ");
             String choice = scanner.nextLine().toUpperCase();
             if (choice.equals("D")) {
@@ -84,11 +85,12 @@ public class AccountingLedgerApp {
         Scanner scanner = new Scanner(System.in);
         boolean run = true;
         while (run) {
-            System.out.println("Your Ledger Account");
+            System.out.println("=====Your Ledger Account=====");
             System.out.println("A) All Deposits");
             System.out.println("P) All Payments");
             System.out.println("R) Reports");
             System.out.println("B) Back");
+            System.out.println("==============================");
             System.out.println("Select an Option: ");
             String choice = scanner.nextLine();
             if (choice.equals("A")) {
@@ -142,13 +144,14 @@ public class AccountingLedgerApp {
         Scanner scanner = new Scanner(System.in);
         boolean run = true;
         while (run){
-            System.out.println("Reports Menu");
+            System.out.println("=====Reports Menu=====");
             System.out.println("1) Month to Date");
             System.out.println("2) Previous Month");
             System.out.println("3) Year to Date");
             System.out.println("4) Previous Year");
             System.out.println("5) Vendor Name");
             System.out.println("B) Back to Home");
+            System.out.println("=======================");
             System.out.println("Select an Option");
             String choice = scanner.nextLine();
 

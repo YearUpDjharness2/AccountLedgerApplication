@@ -51,16 +51,16 @@ Contains helper methods for reading, parsing, and filtering transactions from th
  ## Reading CSV:
 
 The program reads the transactions.csv file using a BufferedReader in Transactions.java. Each line is split using a delimiter (|) to extract the date, description, vendor, and amount.
-Data Filtering:
+
 
 The program provides options to filter transactions:
 Deposits: Displays only transactions labeled as "Deposit."
 Payments: Displays only transactions with descriptions like "Invoice [X] paid."
 Reports: Filters transactions by vendor name entered by the user.
-Error Handling:
+
 
 The program uses try-catch blocks to handle I/O exceptions, particularly when dealing with file reading and parsing.
-CSV Parsing:
+
 
 The application assumes that each line of the transactions.csv file is correctly formatted and splits each entry by the pipe (|) character into its corresponding fields.
 

@@ -8,7 +8,7 @@ View All Transactions: Displays a list of transactions (payments, deposits) from
 Filter by Vendor: Searches for transactions related to a specific vendor.
 View Deposits: Lists only the transactions where money has been deposited.
 View Payments: Lists only the transactions where payments were made.
-Error Handling: Graceful error handling when the CSV file is not found or other I/O issues occur. 
+
 
 Ensure the transactions.csv file is placed in the resources folder: The CSV file should contain transaction data formatted 
 

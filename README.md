@@ -5,7 +5,6 @@ such as displaying all transactions, filtering transactions by vendor, and more.
 
  ## Features
 View All Transactions: Displays a list of transactions (payments, deposits) from the CSV file.
-Filter by Vendor: Searches for transactions related to a specific vendor.
 View Deposits: Lists only the transactions where money has been deposited.
 View Payments: Lists only the transactions where payments were made.
 
